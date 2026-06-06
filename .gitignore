@@ -1,0 +1,12 @@
+dev_*
+.gradle
+bin
+build
+
+.settings
+.project
+.classpath
+
+src/main/resources/configs/*
+
+
