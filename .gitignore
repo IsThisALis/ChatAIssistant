@@ -7,6 +7,6 @@ build
 .project
 .classpath
 
-src/main/resources/configs/*
+configs
 
 
