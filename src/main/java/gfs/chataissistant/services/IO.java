@@ -1,7 +1,9 @@
 package gfs.chataissistant.services;
 
   // io
-import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.IOException;
 
   // nio 
@@ -20,13 +22,16 @@ public class IO {
       */ 
     public static String loadTextFile(String path) {
     
-    try (InputStream stream = IO.class.getClassLoader().getResourceAsStream(path);) {
+    try {
+      Path fpath = Paths.get(path);
 
-      if (stream == null) {
+      if (!Files.exists(fpath)) {
           throw new IOException("Cannot find file " + "[ " +path+ " ]");
       }
 
-      return new String(stream.readAllBytes(), StandardCharsets.UTF_8).trim();
+      byte[] bytes = Files.readAllBytes(fpath);
+      return new String(bytes, StandardCharsets.UTF_8).trim();
+      
     } catch(IOException e) {
         throw new RuntimeException("Encountered unknown error while loading file " + "[ " + path + " ]" + "[ " + e + " ]");
     }
