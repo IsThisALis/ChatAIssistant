@@ -25,7 +25,10 @@ create new API key and save it to configs/apiKey.txt
 
 go to Models and choose one comparing to your budget or choose one with (free)
 copy and save model name to configs/model.txt
+
+
 ![a relative link](Images/model-name.png)
+
 
 choose word that would trigger model and save to configs/askWord.txt 
 write info about you to configs/bio.txt
