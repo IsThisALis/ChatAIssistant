@@ -52,3 +52,7 @@ gradle build
 get build/distributions/ChatAIssistant .zip or .rar
 
 unpack and place configs folder to ChatAIssistant/bin
+
+# FAQ
+
+None, open issue if have problems
