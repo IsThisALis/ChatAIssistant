@@ -16,6 +16,7 @@ go to [this](https://twitchtokengenerator.com/) website
 Choose Bot Chat Token and then authorize with Twitch 
 Copy access token and client id
 
+write your nickname to configs/userName.txt (like: IsThisALis)
 save client id to configs/clientId.txt
 save access token to configs/accessToken.txt
 save this (https://openrouter.ai/api/v1/chat/completions) to configs/apiProviderURL.txt
