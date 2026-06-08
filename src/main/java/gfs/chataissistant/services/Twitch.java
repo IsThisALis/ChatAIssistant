@@ -5,6 +5,7 @@ import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 
+
 /**
  * Twitch implementation 
  */
@@ -20,7 +21,7 @@ public class Twitch {
   private static TwitchClientBuilder builder = TwitchClientBuilder.builder();
   private static OAuth2Credential credential;
   private static TwitchClient client;
-
+  
   public static void init() {
     askWord = IO.loadTextFile("configs/askWord.txt");
     accessToken = IO.loadTextFile("configs/accessToken.txt");
@@ -41,7 +42,15 @@ public class Twitch {
 
       response = AI.ask(message);
 
+      
+
       if (response == null || !response.equals("none")) client.getChat().sendMessage(event.getChannel().getName(), response);
+
+      if (response.equals("none")) { 
+        LogChat.logIgnored(userName, message);
+        return;
+      }
+
       response = null;
     });
   }
