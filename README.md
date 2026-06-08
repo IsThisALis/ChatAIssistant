@@ -34,7 +34,10 @@ copy and save model name to configs/model.txt
 choose word that would trigger model and save to configs/askWord.txt 
 write info about you to configs/bio.txt
 write your rules for model to configs/rules.txt (if you dont want model to response on some themes make instruction to response with "none")
-        
+
+
+This is how your configs folder should look like
+![a relative link](Images/configs-folder.png)
 
 ### Build it:
 
