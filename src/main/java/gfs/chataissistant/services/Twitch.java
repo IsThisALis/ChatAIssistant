@@ -10,19 +10,23 @@ import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
  */
 public class Twitch {
 
-  private static String clientId = IO.loadTextFile("configs/clientId.txt");
-  private static String accessToken = IO.loadTextFile("configs/accessToken.txt");
-  private static String askWord = IO.loadTextFile("configs/askWord.txt");
-
+  private static String clientId;
+  private static String accessToken;
+  private static String askWord;
   private static String userName;
   private static String message;
   private static String response;
 
   private static TwitchClientBuilder builder = TwitchClientBuilder.builder();
-  private static OAuth2Credential credential = new OAuth2Credential("twitch", accessToken);
+  private static OAuth2Credential credential;
   private static TwitchClient client;
 
   public static void init() {
+    askWord = IO.loadTextFile("configs/askWord.txt");
+    accessToken = IO.loadTextFile("configs/accessToken.txt");
+    clientId = IO.loadTextFile("configs/clientId.txt");
+
+    credential = new OAuth2Credential("twitch", accessToken);
 
     client =  builder.withClientId(clientId).withChatAccount(credential).withEnableChat(true).build();
 
@@ -33,7 +37,9 @@ public class Twitch {
 
       System.out.println("[ " + userName + " ]: "+message);
 
-      if(message.toLowerCase().startsWith(askWord)) response = AI.ask(message);
+      if(!message.toLowerCase().startsWith(askWord.toLowerCase())) return;
+
+      response = AI.ask(message);
 
       if (response == null || !response.equals("none")) client.getChat().sendMessage(event.getChannel().getName(), response);
       response = null;
