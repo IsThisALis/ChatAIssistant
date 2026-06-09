@@ -13,7 +13,7 @@ You can also build latest version from source code by yourself
 
 You need libs and bin folder with executables
 go to [this](https://twitchtokengenerator.com/) website 
-Choose Bot Chat Token and then authorize with Twitch 
+Choose Bot Chat Token and then authorize with Twitch, choose chat:read & cbat:edit
 Copy access token and client id
 
 write your nickname to configs/userName.txt (like: IsThisALis)
