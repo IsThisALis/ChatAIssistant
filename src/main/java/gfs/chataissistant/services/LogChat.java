@@ -44,4 +44,9 @@ public class LogChat {
   public static void logIgnored(String username ,String message) {
     logger.info("[ " + username + " ]: " + message);
   }
+
+
+  public static void logInfo(String msg) {}
+  public static void logWarn(String msg) {}
+  public static void logErr(String msg) {}
 }
