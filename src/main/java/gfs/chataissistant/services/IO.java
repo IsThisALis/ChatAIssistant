@@ -14,6 +14,20 @@ import java.nio.charset.StandardCharsets;
    */
 public class IO {
 
+
+    static {
+      Path logs = Path.of("logs");
+      Path ignored = Path.of("logs", "ignored.log");
+      
+      try {
+        if (!Files.isDirectory(logs)) {
+          Files.createDirectory(logs);
+          Files.createFile(ignored);
+        }
+      } catch (IOException e) {
+        System.err.println("Unable to create 'logs/' folder: " + e);
+      }
+    }
   
       /**
       * Used to load files to String.
