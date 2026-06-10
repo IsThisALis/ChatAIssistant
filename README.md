@@ -1,3 +1,5 @@
+[Русский](https://github.com/Glowing-Fox-Studios/ChatAIssistant/blob/main/README_RU.md)
+
 # ChatAIssistant
 Twitch chat AI assistant, can answer questions for you
 

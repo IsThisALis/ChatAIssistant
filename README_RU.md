@@ -1,3 +1,5 @@
+[English](https://github.com/Glowing-Fox-Studios/ChatAIssistant/blob/main/README.md)
+
 # ChatAIssistant
 Twitch ИИ-ассистент, может отвечать на самые разные вопросы.
 В следующих обновлениях планируется добавить средства модерации чата.
