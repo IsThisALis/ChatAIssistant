@@ -23,7 +23,7 @@ public class AI {
   public static void init() {
     model = IO.loadTextFile("configs/model.txt");
     apiKey = IO.loadTextFile("configs/apiKey.txt");
-    apiUrl = IO.loadTextFile("configs/apiProviderURL.txt");
+    apiUrl = "https://openrouter.ai/api/v1/chat/completions";
   }
 
 

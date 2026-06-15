@@ -13,10 +13,15 @@ public class Twitch {
 
   private static String clientId;
   private static String accessToken;
+
   private static String askWord;
   private static String userName;
+
   private static String message;
   private static String response;
+
+  private static String channel;
+
 
   private static TwitchClientBuilder builder = TwitchClientBuilder.builder();
   private static OAuth2Credential credential;
@@ -57,7 +62,13 @@ public class Twitch {
 
 
   public static void start(String channel) {
+    Twitch.channel = channel;
     client.getChat().joinChannel(channel);
     System.out.println("Joined: "+channel);
+  }
+
+
+  public static String getChannel() {
+    return channel;
   }
 }
