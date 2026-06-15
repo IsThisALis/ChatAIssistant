@@ -47,17 +47,13 @@ You need to install Gradle latest version, JDK 21
 
 ```
 git clone https://github.com/IsThisALis/ChatAIssistant.git 
-```
-
-move to ChatAIssistant
-
-```
+cd ChatAIssistant
 gradle build 
 ```
 
 get build/distributions/ChatAIssistant .zip or .rar
 
-unpack and place configs folder to ChatAIssistant/bin
+unpack and place configs to bin/
 
 # FAQ
 
