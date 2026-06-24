@@ -1,16 +1,17 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.configuration;
 
 import org.yaml.snakeyaml.Yaml;
 
+import gfs.chataissistant.util.IO;
+
 /**
- * Configs
+ * Config class. Loads and stores data from YAML configuration.
  */
 public class Config {
 
   private static String yml = IO.loadTextFile("config.yml");
-
-  private static Configuration configuration;
   private static Yaml yaml = new Yaml();
+  private static Configuration configuration = yaml.loadAs(yml, Configuration.class);
 
 
   public static void update() {

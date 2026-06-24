@@ -1,4 +1,4 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.util;
 
   // io
 import java.nio.file.Files;

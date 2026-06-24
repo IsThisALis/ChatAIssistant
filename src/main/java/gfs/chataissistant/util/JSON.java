@@ -1,12 +1,14 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import gfs.chataissistant.configuration.Config;
 
 import java.util.Map;
 import java.util.List;
 
 /**
- * JSON message wrapper 
+ * JSON parser. Wraps and unwraps content.
  */
 public class JSON {
 
@@ -19,7 +21,7 @@ public class JSON {
     rules = Config.getConfig().rules;
   }
 
-  public static String receiveMessage(String message, String model) throws Exception {
+  public static String makeAiRequest(String message, String model) throws Exception {
 
     Map<String, String> settings = Map.of("role", "system", "content", bio + "\n\n" + rules); 
 
@@ -31,7 +33,7 @@ public class JSON {
   }
 
 
-  public static String parseJson(String json) {
+  public static String parseAiResponse(String json) {
     try {
       Map<String, Object> response = mapper.readValue(json, Map.class);
 

@@ -1,4 +1,10 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.ai;
+
+import gfs.chataissistant.util.JSON;
+
+import gfs.chataissistant.configuration.Config;
+
+import gfs.chataissistant.twitch.Message;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,27 +20,30 @@ public class AI {
   private static HttpRequest request;
   private static HttpResponse<String> response;
 
-//  public static String apiUrl;
   private static String json;
-
   private static String model;
   private static String apiKey; 
 
 
-  public static void init() {
+  public static void configure() {
     model = Config.getConfig().model;
     apiKey = Config.getConfig().apiKey;
   }
 
 
-  public static String ask(String message) {
+  public static String ask(Message message) {
     try {
-      json = JSON.receiveMessage(message, model);
+      json = JSON.makeAiRequest("[" + message.Username() + "]: " + message.Message(), model);
     } catch (Exception e) {
       System.err.println("Error! "+e);
       return "none";
     }
 
+
+    if (Config.getConfig().apiProvider.equals("deepseek")) {
+      //request = HttpRequest.newBuilder()
+      // TODO: DeepSeek API support
+    }
 
     if (Config.getConfig().apiProvider.toLowerCase().equals("lms")) {
       request = HttpRequest.newBuilder()
@@ -58,6 +67,7 @@ public class AI {
         .build();
     }
 
+
     try {
       System.out.println("Request sent to: "+model);
       response = http.send(request, HttpResponse.BodyHandlers.ofString());
@@ -69,6 +79,6 @@ public class AI {
       e.printStackTrace();
       return "none";
      }
-    return JSON.parseJson(response.body());
+    return JSON.parseAiResponse(response.body());
   }
 }

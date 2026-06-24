@@ -1,6 +1,7 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.util;
 
 import java.io.IOException;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
@@ -8,13 +9,12 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 /**
- * LogChat
+ * Logs chat, code working process.
  */
-public class LogChat {
+public class Log {
 
   private static final Logger logger;
-  private static final String logs_path = "logs/";
-  private static final String ignoredPath = logs_path+"ignored.log";
+  private static final String ignoredPath = "logs/ignored.log";
 
 
   static {
@@ -30,7 +30,7 @@ public class LogChat {
 
           @Override
         public synchronized String format(LogRecord lr) {
-          return String.format(format,lr.getMillis(), lr.getMessage());
+          return String.format(format, lr.getMillis(), lr.getMessage());
         }
       });
 
@@ -41,12 +41,7 @@ public class LogChat {
   }
 
   
-  public static void logIgnored(String username ,String message) {
-    logger.info("[ " + username + " ]: " + message);
+  public static void logToIgnored(String content) {
+    logger.info(content);
   }
-
-
-  public static void logInfo(String msg) {}
-  public static void logWarn(String msg) {}
-  public static void logErr(String msg) {}
 }

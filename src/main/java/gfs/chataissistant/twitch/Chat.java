@@ -1,22 +1,26 @@
-package gfs.chataissistant.services;
+package gfs.chataissistant.twitch;
+
+import gfs.chataissistant.configuration.Config;
+import gfs.chataissistant.util.Log;
+import gfs.chataissistant.ai.AI;
 
 import com.github.philippheuer.credentialmanager.domain.OAuth2Credential;
+
 import com.github.twitch4j.TwitchClient;
 import com.github.twitch4j.TwitchClientBuilder;
 import com.github.twitch4j.chat.events.channel.ChannelMessageEvent;
 
 
 /**
- * Twitch implementation 
+ * Chat functionality implementation.
  */
-public class Twitch {
+public class Chat {
 
   private static String clientId;
   private static String accessToken;
   private static String askWord;
 
-  private static String userName;
-  private static String message;
+  private static Message message; 
   private static String response;
 
   private static String channel;
@@ -25,7 +29,7 @@ public class Twitch {
   private static OAuth2Credential credential;
   private static TwitchClient client;
   
-  public static void init() {
+  public static void configure() {
     askWord = Config.getConfig().askWord;
     accessToken = Config.getConfig().accessToken;
     clientId = Config.getConfig().clientId;
@@ -33,21 +37,17 @@ public class Twitch {
     credential = new OAuth2Credential("twitch", accessToken);
 
     client =  builder.withClientId(clientId).withChatAccount(credential).withEnableChat(true).build();
-
     client.getEventManager().onEvent(ChannelMessageEvent.class, event -> {
+      
+      message = new Message(event.getUser().getName(), event.getMessage());
+      System.out.println("[ " + message.Username() + " ]: "+message.Message());
+      if(!message.Message().toLowerCase().startsWith(askWord)) return;
 
-      userName = event.getUser().getName();
-      message = event.getMessage();
+      response = AI.ask(message);
 
-      System.out.println("[ " + userName + " ]: "+message);
-
-      if(!message.toLowerCase().startsWith(askWord.toLowerCase())) return;
-
-      response = AI.ask("[" + userName + "]: " + message);
       if (response != null && !response.equals("none")) client.getChat().sendMessage(event.getChannel().getName(), response);
-
-      if (response.equals("none")) { 
-        LogChat.logIgnored(userName, message);
+      else {
+        Log.logToIgnored("[ " + message.Username() + " ]: " + message);
         return;
       }
 
@@ -56,8 +56,8 @@ public class Twitch {
   }
 
 
-  public static void start(String channel) {
-    Twitch.channel = channel;
+  public static void join(String channel) {
+    Chat.channel = channel;
     client.getChat().joinChannel(channel);
     System.out.println("Joined: "+channel);
   }

@@ -15,9 +15,9 @@
   }
 
   application {
-    mainClass.set('gfs.chataissistant.Main')
+    mainClass.set('gfs.chataissistant.ChatAIssistant')
   }
 
   jar {
-    manifest.attributes('Main-Class': 'gfs.chataissistant.Main')
+    manifest.attributes('Main-Class': 'gfs.chataissistant.ChatAIssistant')
   }
