@@ -1,8 +1,6 @@
 package gfs.chataissistant;
 
-import gfs.chataissistant.services.AI;
-import gfs.chataissistant.services.IO;
-import gfs.chataissistant.services.Twitch;
+import gfs.chataissistant.services.*;
 
 /**
  * Main
@@ -11,8 +9,10 @@ public class Main {
 
   
   public static void main(String[] args) {
+    Config.update();
+    JSON.init();
     AI.init();
     Twitch.init();
-    Twitch.start(IO.loadTextFile("configs/userName.txt"));
+    Twitch.start(Config.getConfig().channel);
   }
 }

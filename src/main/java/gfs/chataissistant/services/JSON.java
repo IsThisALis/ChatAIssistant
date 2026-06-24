@@ -11,9 +11,13 @@ import java.util.List;
 public class JSON {
 
   private static ObjectMapper mapper = new ObjectMapper();
-  private static String bio = IO.loadTextFile("configs/bio.txt");
-  private static String rules = IO.loadTextFile("configs/rules.txt");
+  private static String bio;
+  private static String rules;
 
+  public static void init() {
+    bio = Config.getConfig().bio;
+    rules = Config.getConfig().rules;
+  }
 
   public static String receiveMessage(String message, String model) throws Exception {
 
@@ -36,6 +40,7 @@ public class JSON {
       Map<String, Object> first = choices.get(0);
       Map<String, Object> msg = (Map<String, Object>) first.get("message");
 
+      System.out.println(msg.get("content"));
       return (String) msg.get("content");
     } catch (Exception e) {
       System.err.println("Error! "+e);

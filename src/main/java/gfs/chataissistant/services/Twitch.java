@@ -13,24 +13,22 @@ public class Twitch {
 
   private static String clientId;
   private static String accessToken;
-
   private static String askWord;
-  private static String userName;
 
+  private static String userName;
   private static String message;
   private static String response;
 
   private static String channel;
-
 
   private static TwitchClientBuilder builder = TwitchClientBuilder.builder();
   private static OAuth2Credential credential;
   private static TwitchClient client;
   
   public static void init() {
-    askWord = IO.loadTextFile("configs/askWord.txt");
-    accessToken = IO.loadTextFile("configs/accessToken.txt");
-    clientId = IO.loadTextFile("configs/clientId.txt");
+    askWord = Config.getConfig().askWord;
+    accessToken = Config.getConfig().accessToken;
+    clientId = Config.getConfig().clientId;
 
     credential = new OAuth2Credential("twitch", accessToken);
 
@@ -45,11 +43,8 @@ public class Twitch {
 
       if(!message.toLowerCase().startsWith(askWord.toLowerCase())) return;
 
-      response = AI.ask(message);
-
-      
-
-      if (response == null || !response.equals("none")) client.getChat().sendMessage(event.getChannel().getName(), response);
+      response = AI.ask("[" + userName + "]: " + message);
+      if (response != null && !response.equals("none")) client.getChat().sendMessage(event.getChannel().getName(), response);
 
       if (response.equals("none")) { 
         LogChat.logIgnored(userName, message);
