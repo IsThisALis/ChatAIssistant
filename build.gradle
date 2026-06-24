@@ -11,6 +11,7 @@
     implementation('com.github.twitch4j:twitch4j:1.19.0')
     implementation('com.fasterxml.jackson.core:jackson-databind:2.21.4')
     implementation('com.github.twitch4j:twitch4j-chat:1.20.0');
+    implementation('org.yaml:snakeyaml:2.6');
   }
 
   application {
