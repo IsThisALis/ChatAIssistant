@@ -1,8 +1,9 @@
-[Русский](https://github.com/Glowing-Fox-Studios/ChatAIssistant/blob/main/README_RU.md)
+[Русский](https://github.com/IsThisALis/ChatAIssistant/blob/main/README_RU.md)
+
+# WARNING! This README is deprecated for v1.3.0!
 
 # ChatAIssistant
 Twitch chat AI assistant, can answer questions for you
-
 
 ## Installation
 
