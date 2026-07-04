@@ -8,10 +8,15 @@
   }
 
   dependencies {
-    implementation('com.github.twitch4j:twitch4j:1.19.0')
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.21.4')
+    implementation('com.github.twitch4j:twitch4j:1.19.0');
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.21.4');
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.1');
     implementation('com.github.twitch4j:twitch4j-chat:1.20.0');
-    implementation('org.yaml:snakeyaml:2.6');
+    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2');
+    implementation('org.xerial:sqlite-jdbc:3.45.1.0');
+
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
   }
 
   application {
@@ -20,4 +25,18 @@
 
   jar {
     manifest.attributes('Main-Class': 'gfs.chataissistant.ChatAIssistant')
+  }
+
+  distributions {
+    main {
+      contents {
+        into('bin') {
+          from 'src/main/resources'
+        }
+      }
+    }
+  }
+
+  run {
+    standardInput = System.in
   }
