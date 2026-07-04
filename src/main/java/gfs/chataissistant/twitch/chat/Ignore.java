@@ -1,23 +1,17 @@
-package gfs.chataissistant.util;
+package gfs.chataissistant.twitch.chat;
 
-import java.io.IOException;
-
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 /**
- * Logs chat, code working process.
+ * Logs ignored messages.
  */
-public class Log {
+public class Ignore {
 
-  private static final Logger logger;
-  private static final String ignoredPath = "logs/ignored.log";
+  private final Logger logger;
+  private final String ignoredPath = "logs/ignored.log";
 
 
-  static {
+  public Ignore() {
     logger = Logger.getLogger("chataissistant.ChatLogger"); 
     logger.setUseParentHandlers(false);
     logger.setLevel(Level.ALL);
@@ -35,13 +29,13 @@ public class Log {
       });
 
       logger.addHandler(fileHandler);
-    } catch (IOException e) {
+    } catch (Exception e) {
       System.err.println("Unable to create logger: "+e.getMessage());
     }
   }
 
   
-  public static void logToIgnored(String content) {
+  public void logToIgnored(String content) {
     logger.info(content);
   }
 }

@@ -1,21 +1,19 @@
 package gfs.chataissistant;
 
-import gfs.chataissistant.ai.AI;
-import gfs.chataissistant.configuration.Config;
-import gfs.chataissistant.twitch.Chat;
-import gfs.chataissistant.util.JSON;
-
 /**
- * Main
+ * Main class.
  */
 public class ChatAIssistant {
 
-  
+  private static Application app = new Application();
+
   public static void main(String[] args) {
-    Config.update();
-    JSON.init();
-    AI.configure();
-    Chat.configure();
-    Chat.join(Config.getConfig().channel);
+    app.start();
+    app.update();
+  }
+
+
+  public static void setService(Application app) {
+    ChatAIssistant.app = app;
   }
 }

@@ -1,0 +1,57 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "get_chat_history",
+      "description": "Get recent chat messages from database",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Number of messages to retrieve"
+          }
+        },
+        "required": ["limit"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_chat_history_by_user",
+      "description": "Get messages sent in chat by user",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "Username of user"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of last messages to retrieve"
+          }
+        },
+        "required": ["user", "limit"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "get_chat_history_by_user_no_limit",
+      "description": "Get ALL messages sent in chat by user",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string",
+            "description": "Username of user"
+          }
+        },
+        "required": ["user"]
+      }
+    }
+  }
+]
