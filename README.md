@@ -1,7 +1,5 @@
 [Русский](https://github.com/IsThisALis/ChatAIssistant/blob/main/README_RU.md)
 
-# WARNING! This README is deprecated for v1.3.0!
-
 # ChatAIssistant
 Twitch chat AI assistant, can answer questions for you
 
@@ -17,11 +15,29 @@ You can also build latest version from source code by yourself
 You need JDK/JRE 21 installed
 
 Download and unpack latest [release](https://github.com/IsThisALis/ChatAIssistant/releases/latest)
-go to [this](https://twitchtokengenerator.com/) website
+go to [this](https://twitchtokengenerator.com/) website, get client ID and access token 
 
-
-
+Login to [OpenRouter](https://openrouter.ai), get API key and choose AI model
 ![a relative link](Images/model-name.png)
+
+Write about yourself and how you want AI to answer 
+
+find config.yml in bin folder and fill it:
+```YAML
+model: ""
+api-key: "" 
+client-id: ""
+ask-word: ""
+channel: ""
+access-token: ""
+bio: ""
+rules: ""
+api-provider: ""
+api-url: "default" # default or custom
+db-url: "default" # default or custom 
+```
+
+Start .bat or executable script 
 
 ### Build it:
 
@@ -35,7 +51,6 @@ gradle build
 
 get build/distributions/ChatAIssistant .zip or .rar
 
-unpack and place configs to bin/
 
 # FAQ
 
