@@ -50,12 +50,14 @@ public class EventPoller {
   private void pollAiCall(Message message) {
     response = ai.ask(message);
 
-    if (response != null && !response.equals("none")) client.getTwitchClient().getChat().sendMessage(message.channel(), response);
-      else {
-        ignore.logToIgnored("[ " + message.Username() + " ]: " + message);
-        return;
-      }
-      response = null;
+    if (response != null && !response.equals("none")) {
+      worker.saveMessage(new Message(config.channel.toLowerCase(), "AI Response", response, LocalDateTime.now().format(FORMATTER)));
+      client.getTwitchClient().getChat().sendMessage(message.channel(), response);
+      return;
+    }
+
+    ignore.logToIgnored("[ " + message.Username() + " ]: " + message);
+    response = null;
   }
 
 }
