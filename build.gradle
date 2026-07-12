@@ -8,23 +8,27 @@
   }
 
   dependencies {
-    implementation('com.github.twitch4j:twitch4j:1.19.0');
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.21.4');
-    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.16.1');
-    implementation('com.github.twitch4j:twitch4j-chat:1.20.0');
-    implementation('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2');
-    implementation('org.xerial:sqlite-jdbc:3.45.1.0');
+    implementation 'com.github.twitch4j:twitch4j:1.26.0'
 
-    compileOnly 'org.projectlombok:lombok:1.18.30'
-    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    implementation 'tools.jackson.core:jackson-databind:3.2.0'
+    //implementation 'tools.jackson.datatype:jackson-datatype-jsr310:3.0.0-rc2'
+    implementation 'tools.jackson.dataformat:jackson-dataformat-yaml:3.2.0'
+
+    implementation 'org.xerial:sqlite-jdbc:3.53.2.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    compileOnly 'org.projectlombok:lombok:1.18.46'
+    annotationProcessor 'org.projectlombok:lombok:1.18.46'
   }
 
   application {
-    mainClass.set('gfs.chataissistant.ChatAIssistant')
+    mainClass.set('com.isthisalis.chataissistant.ChatAIssistant')
   }
 
   jar {
-    manifest.attributes('Main-Class': 'gfs.chataissistant.ChatAIssistant')
+    manifest.attributes('Main-Class': 'com.isthisalis.chataissistant.ChatAIssistant')
   }
 
   distributions {
@@ -39,4 +43,13 @@
 
   run {
     standardInput = System.in
+  }
+
+  tasks.named ('test', Test) {
+    useJUnitPlatform()
+    maxHeapSize = '1G'
+
+    testLogging {
+      events "passed"
+    }
   }
