@@ -31,7 +31,6 @@ bin
 
 # dev
 .dev*
-config.yml
 
 # files
 .classpath
