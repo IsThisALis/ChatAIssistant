@@ -79,7 +79,6 @@ public class Config {
     public String dbUrl;
     public Map<String, String> commands;
     public String commandPrefix;
-    public int warnsToMute;
 
     public Configuration trim() {
       if (apiUrl.isBlank()) apiUrl = "default";

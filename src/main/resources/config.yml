@@ -1,0 +1,16 @@
+model: ""
+api-key: ""
+client-id: ""
+ask-word: ""
+channel: ""
+access-token: ""
+bio: ""
+rules: ""
+api-provider: ""
+api-url: "default" # default or custom
+db-url: "default" # default or custom
+commands:
+  warn: "warn"
+  mute: "mute"
+  ban: "ban"
+command-prefix: "!"
